@@ -43,12 +43,29 @@ public class AuthUI {
     }
 
     private void workSpaceSettings() {
-
+//        for Javohir
     }
 
     private void showWorkSpace() {
-
+//      for Javohir
     }
+
+    /***
+     * Board
+     * for Jahongir aka
+     * tables relationships
+     */
+
+
+    /***
+     * Mirfayz column
+     */
+
+    /***
+     * Shohruh aka task function
+     */
+
+
 
     private void logout() {
         Session.setSessionUser(null);
