@@ -3,6 +3,7 @@ package uz.jl.service;
 import lombok.NonNull;
 import uz.jl.vo.BaseVO;
 import uz.jl.vo.GenericVO;
+import uz.jl.vo.IdVO;
 import uz.jl.vo.http.Response;
 
 import java.io.Serializable;

@@ -1,17 +1,19 @@
 package uz.jl.vo.http;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Table;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@ToString
 public class Response<T> {
     private T body;
     private Integer total;
     private ErrorVO error;
-    private boolean ok;
+    private boolean ok = true;
 
     public Response(T body) {
         this(body, null);

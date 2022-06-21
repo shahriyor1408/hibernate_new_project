@@ -3,10 +3,14 @@ package uz.jl.domains.auth;
 import jakarta.persistence.*;
 import lombok.*;
 import uz.jl.domains.Auditable;
+import uz.jl.domains.WorkSpace;
 import uz.jl.enums.AuthRole;
 import uz.jl.enums.Status;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -30,13 +34,21 @@ public class AuthUser extends Auditable {
     @Convert(converter = Status.StatusConvertor.class)
     private Status status;
 
+//    @ManyToMany
+//    private List<WorkSpace> workSpaceList;
+
     @Builder(builderMethodName = "childBuilder")
-    public AuthUser(Long id, Timestamp createdAt, Long createdBy, Timestamp updatedAt, Long updatedBy, boolean deleted, String username, String password, String email, AuthRole role, Status status) {
+    public AuthUser(Long id, Timestamp createdAt, Long createdBy, Timestamp updatedAt, Long updatedBy, boolean deleted, String username, String password, String email, AuthRole role, Status status, List<WorkSpace> workSpaceList) {
         super(id, createdAt, createdBy, updatedAt, updatedBy, deleted);
         this.username = username;
         this.password = password;
+
         this.email = email;
-        this.role = role;
-        this.status = status;
+        if (Objects.isNull(role))
+            this.role = AuthRole.USER;
+        if (Objects.isNull(status))
+            this.status = Status.PASSWORD_NOT_RESET;
+//        if (Objects.isNull(workSpaceList))
+//            this.workSpaceList = new ArrayList<>();
     }
 }

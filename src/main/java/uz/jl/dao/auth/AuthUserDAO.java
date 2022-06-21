@@ -24,11 +24,11 @@ public class AuthUserDAO extends GenericDAO<AuthUser, Long> {
 
     public Optional<AuthUser> findByUserName(String username) {
         Session session = getSession();
+        session.beginTransaction();
         Query<AuthUser> query = session
                 .createQuery("select t from AuthUser t where lower(t.username) = lower(:username) ",
                         AuthUser.class);
         query.setParameter("username", username);
-        AuthUser authUser = query.getSingleResultOrNull();
         return Optional.ofNullable(query.getSingleResultOrNull());
     }
 }

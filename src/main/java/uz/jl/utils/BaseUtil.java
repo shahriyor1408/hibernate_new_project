@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 import uz.jl.configs.PasswordConfigurer;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class BaseUtils {
-    private static BaseUtils instance;
+public class BaseUtil {
+    private static BaseUtil instance;
 
     public String encode(String rawPassword) {
         return PasswordConfigurer.encode(rawPassword);
@@ -16,9 +16,9 @@ public class BaseUtils {
         return PasswordConfigurer.matchPassword(rawPassword, encodedPassword);
     }
 
-    public static BaseUtils getInstance() {
+    public static BaseUtil getInstance() {
         if (instance == null) {
-            instance = new BaseUtils();
+            instance = new BaseUtil();
         }
         return instance;
     }
