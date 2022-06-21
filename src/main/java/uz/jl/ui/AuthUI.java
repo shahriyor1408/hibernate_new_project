@@ -3,6 +3,7 @@ package uz.jl.ui;
 import uz.jl.BaseUtils;
 import uz.jl.Colors;
 import uz.jl.configs.ApplicationContextHolder;
+import uz.jl.service.*;
 import uz.jl.service.auth.AuthUserService;
 import uz.jl.vo.Session;
 import uz.jl.vo.auth.AuthUserCreateVO;
@@ -11,7 +12,12 @@ import uz.jl.vo.http.Response;
 import java.util.Objects;
 
 public class AuthUI {
-    static AuthUserService service = ApplicationContextHolder.getBean(AuthUserService.class);
+    static AuthUserService serviceUser = ApplicationContextHolder.getBean(AuthUserService.class);
+    static WorkSpaceService serviceWorkSpace = ApplicationContextHolder.getBean(WorkSpaceService.class);
+    static BoardService serviceBoard = ApplicationContextHolder.getBean(BoardService.class);
+    static BoardColumnService serviceBoardColumn = ApplicationContextHolder.getBean(BoardColumnService.class);
+//    static TaskService serviceTask = ApplicationContextHolder.getBean(TaskService.class);
+//    static CommentService serviceComment = ApplicationContextHolder.getBean(CommentService.class);
     static AuthUI authUI = new AuthUI();
 
     public static void main(String[] args) {
@@ -388,13 +394,13 @@ public class AuthUI {
                 .email(BaseUtils.readText("Enter email: "))
                 .password(BaseUtils.readText("Create password: "))
                 .build();
-        print_response(service.create(vo));
+        print_response(serviceUser.create(vo));
     }
 
     private void login() {
         String username = BaseUtils.readText("Enter username: ");
         String password = BaseUtils.readText("Enter password: ");
-        print_response(service.login(username, password));
+        print_response(serviceUser.login(username, password));
     }
 
     public void print_response(Response response) {
