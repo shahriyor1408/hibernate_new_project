@@ -8,30 +8,30 @@ import java.util.Objects;
 
 @Getter
 @AllArgsConstructor
-public enum WorkSpaceStatus {
+public enum BoardStatus {
     PUBLIC(-10),
     PRIVATE(-100);
 
     public final int priority;
 
-    public static class WorkspaceStatusConvertor implements AttributeConverter<WorkSpaceStatus, String> {
+    public static class BoardStatusConvertor implements AttributeConverter<BoardStatus, String> {
         @Override
-        public String convertToDatabaseColumn(WorkSpaceStatus attribute) {
+        public String convertToDatabaseColumn(BoardStatus attribute) {
             if (Objects.isNull(attribute))
                 return null;
             return switch (attribute) {
-                case PUBLIC -> "Public workspace";
-                case PRIVATE -> "Private workspace";
+                case PUBLIC -> "Public board";
+                case PRIVATE -> "Private board";
             };
         }
 
         @Override
-        public WorkSpaceStatus convertToEntityAttribute(String dbData) {
+        public BoardStatus convertToEntityAttribute(String dbData) {
             if (Objects.isNull(dbData))
                 return null;
             return switch (dbData) {
-                case "Public workspace" -> PUBLIC;
-                case "private workspace" -> PRIVATE;
+                case "Public board" -> PUBLIC;
+                case "Private board" -> PRIVATE;
                 default -> PUBLIC;
             };
         }
