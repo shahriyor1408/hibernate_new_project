@@ -8,6 +8,7 @@ import uz.jl.dao.auth.AuthUserDAO;
 import uz.jl.domains.auth.AuthUser;
 import uz.jl.service.GenericCRUDService;
 import uz.jl.utils.BaseUtil;
+import uz.jl.vo.Session;
 import uz.jl.vo.auth.AuthUserCreateVO;
 import uz.jl.vo.auth.AuthUserUpdateVO;
 import uz.jl.vo.auth.AuthUserVO;
@@ -92,6 +93,7 @@ public class AuthUserService extends AbstractDAO<AuthUserDAO> implements Generic
                 .email(authUser.getEmail())
                 .createdAt(authUser.getCreatedAt())
                 .build();
+        Session.setSessionUser(authUserVO);
         return new Response<>(authUserVO);
     }
 }
